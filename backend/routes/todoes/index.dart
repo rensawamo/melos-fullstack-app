@@ -14,13 +14,13 @@ Future<Response> onRequest(RequestContext context) async {
 }
 
 Future<Response> _onGet(RequestContext context) async {
-  final tasks = await context.read<TaskRepo>().fetchAllTasks();
-  final json = [for (final task in tasks) task.toJson()];
+  final todos = await context.read<TodoRepo>().fetchAllTodo();
+  final json = [for (final todo in todos) todo.toJson()];
   return Response.json(body: json);
 }
 
 Future<Response> _onPost(RequestContext context) async {
   final json = await context.request.json() as Map<String, dynamic>;
-  final task = await context.read<TaskRepo>().addTask(Task.fromJson(json));
-  return Response.json(body: task.toJson());
+  final todo = await context.read<TodoRepo>().addTodo(Todo.fromJson(json));
+  return Response.json(body: todo.toJson());
 }

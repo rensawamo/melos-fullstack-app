@@ -1,7 +1,7 @@
 import 'package:app/core/store/task_store.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../data/remote_task_repo.dart';
+import '../../data/remote_task_repo.dart';
 
 class GetAllTasksMutation extends VxMutation<TaskStore> {
   GetAllTasksMutation();

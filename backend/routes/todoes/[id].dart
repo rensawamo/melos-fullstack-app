@@ -14,18 +14,18 @@ Future<Response> onRequest(RequestContext context, String id) async {
 }
 
 Future<Response> _onGet(RequestContext context, String id) async {
-  final task = await context.read<TaskRepo>().getTaskById(id);
-  return Response.json(body: task.toJson());
+  final todo = await context.read<TodoRepo>().getTodoById(id);
+  return Response.json(body: todo.toJson());
 }
 
 Future<Response> _onPut(RequestContext context, String id) async {
   final json = await context.request.json() as Map<String, dynamic>;
-  final task = Task.fromJson(json).copyWith(id: id);
-  await context.read<TaskRepo>().updateTask(task);
+  final todo = Todo.fromJson(json).copyWith(id: id);
+  await context.read<TodoRepo>().updateTodo(todo);
   return Response();
 }
 
 Future<Response> _onDelete(RequestContext context, String id) async {
-  await context.read<TaskRepo>().deleteTask(id);
+  await context.read<TodoRepo>().deleteTodo(id);
   return Response();
 }

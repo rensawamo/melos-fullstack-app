@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'core/mutations/get_all_tasks.dart';
+import 'core/mutations/task/get_all_tasks.dart';
 import 'widgets/add_task_widget.dart';
 import 'widgets/task_list_view.dart';
 

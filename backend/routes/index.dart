@@ -1,5 +1,5 @@
 import 'package:dart_frog/dart_frog.dart';
 
 Response onRequest(RequestContext context) {
-  return Response(body: 'Welcome to Codepur Dart Frog!');
+  return Response(body: 'dart frog index page ルート指定してください');
 }

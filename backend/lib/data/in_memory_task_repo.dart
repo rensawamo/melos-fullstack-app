@@ -6,15 +6,7 @@ class InMemoryTaskRepo implements TaskRepo {
   List<Task> _data = [
     Task(
       id: '1',
-      title: 'Buy iPhone',
-    ),
-    Task(
-      id: '2',
-      title: 'Throw iPhone',
-    ),
-    Task(
-      id: '3',
-      title: 'Buy another iPhone',
+      title: 'example',
     ),
   ];
 

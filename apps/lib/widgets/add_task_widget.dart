@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/core/mutations/add_task.dart';
+import 'package:app/core/mutations/task/add_task.dart';
 
 class AddTaskWidget extends StatelessWidget {
   const AddTaskWidget({

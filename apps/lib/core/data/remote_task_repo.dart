@@ -9,6 +9,7 @@ import 'package:repository/repository.dart';
 
 class RemoteTaskRepo implements TaskRepo {
   final client = http.Client();
+  // android emulater の時は localhostでなく　10.0.2.2
   final baseUrl = 'http://localhost:8080';
 
   @override

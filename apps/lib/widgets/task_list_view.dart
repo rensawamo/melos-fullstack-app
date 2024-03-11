@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:app/core/mutations/delete_task.dart';
-import 'package:app/core/mutations/get_all_tasks.dart';
-import 'package:app/core/mutations/update_task.dart';
+import 'package:app/core/mutations/task/delete_task.dart';
+import 'package:app/core/mutations/task/get_all_tasks.dart';
+import 'package:app/core/mutations/task/update_task.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../core/store/task_store.dart';

@@ -36,6 +36,11 @@ my_project
 
 ```
 
+### Architecture & Design
+
+![image](https://github.com/rensawamo/melos-fullstack-app/assets/106803080/f8268492-f778-44ed-a193-f5e404bce366)
+
+
 
 ### bootstrap
 melos の環境構築と dart frogのサーバのセットアップ
@@ -47,4 +52,13 @@ $ make bs
 ```sh
 $ make front-start 
 ```
+
+### 新しい dart  プロジェクトを追加したいとき
+```sh
+$ dart create -t package FOLDERNAME
+```
+
+
+
+
 

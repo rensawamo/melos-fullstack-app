@@ -15,7 +15,179 @@ command:
     dev_dependencies:
       build_runner: ^2.3.3
       
+  clean:
+    hooks:
+    #  flutter cleanをすべて適応
+    #  iosのプラットフォームの Pod 依存関係をすべて削除
+      post: |
+        melos exec --flutter -- "flutter clean" 
+        melos exec --flutter --file-exists="ios/Podfile.lock" -- "cd ios && rm Podfile.lock"
+        melos exec --flutter --file-exists="macos/Podfile.lock" -- "cd macos && rm Podfile.lock"
+        
+  version:
+    branch: main
+    releaseUrl: true
 
+#  vscodeでmelosのプラグイン必要(ここから)
+# melos run ~ 
 scripts:
+# melos使用前にflutter のすべてのバージョンあげておく
+  upgrade:
+    run: |
+      melos exec -- \
+        "flutter pub upgrade --major-versions && flutter pub upgrade"
+    description: Run upgrade the major version of the pub.
+    packageFilters:
+      flutter: true
+      dirExists: lib
+
   analyze:
-    exec: dart analyze .
+    run: |
+      melos run analyze:dart --no-select
+      melos run analyze:flutter --no-select
+      melos run analyze:custom_lint --no-select
+    description: Run all analyze.
+    packageFilters:
+      dirExists: lib
+
+  analyze:dart:
+    run: |
+      melos exec -- \
+        dart analyze . --fatal-infos
+    description: Run analyze.
+    packageFilters:
+      flutter: false
+      dirExists: lib
+
+  analyze:flutter:
+    run: |
+      melos exec -- \
+        flutter analyze . --fatal-infos
+    description: Run analyze.
+    packageFilters:
+      flutter: true
+      dirExists: lib
+
+  analyze:custom_lint:
+    run: |
+      melos exec -- \
+        dart run custom_lint
+    description: Run custom_lint.
+    packageFilters:
+      dirExists: lib
+      dependsOn: "custom_lint"
+
+  format:
+    run: |
+      melos exec -- \
+        dart format lib test
+    description: Run format.
+    packageFilters:
+      flutter: true
+      dirExists: [lib, test]
+
+  #  ciのためにdartのファーマットのチェック
+  # ファイル除外機能に関するissue　https://github.com/dart-lang/dart_style/issues/864
+  format:ci:
+    run: |
+      melos exec -- \
+        dart format --set-exit-if-changed $(find . -name "*.dart" -not \( -name "*.*freezed.dart" -o -name "*.*g.dart" -o -name "*.gen.dart" -o -wholename "./.dart_tool/*" \) )
+    description: Run format.
+    packageFilters:
+      flutter: true
+      dirExists: [lib, test]
+
+  fix:
+    run: |
+      melos exec -- \
+        dart fix --apply lib
+    description: Run dart fix.
+    packageFilters:
+      dirExists: lib
+
+  gen:
+    run: |
+      melos exec -c 1 -- \
+        dart run build_runner build --delete-conflicting-outputs
+    description: Run generate code.
+    packageFilters:
+      dirExists: lib
+      dependsOn: "build_runner"
+
+  slang:
+    run: |
+      melos exec -c 1 -- \
+        dart run slang
+    description: Run generate translation code.
+    packageFilters:
+      dirExists: lib
+      dependsOn: slang
+
+  gen:watch:
+    run: |
+      melos exec -c 1 -- \
+        dart run build_runner watch --delete-conflicting-outputs
+    description: Watch and run generate code.
+    packageFilters:
+      dirExists: lib
+      dependsOn: "build_runner"
+
+  test:
+    run: |
+      melos exec --fail-fast -- \
+        flutter test
+    description: Run flutter test.
+    packageFilters:
+      flutter: true
+      dirExists: test
+
+  test:ci:
+    run: |
+      melos exec --fail-fast -- \
+        flutter test --coverage
+    description: Run flutter test for CI.
+    packageFilters:
+      flutter: true
+      dirExists: test
+
+  pod:
+    run: |
+      melos run pod:ios --no-select
+      melos run pod:macos --no-select
+    description: Run all pod install.
+
+  pod:ios:
+    run: |
+      melos exec -- \
+        "cd ios && pod install"
+    description: Run pod install on iOS.
+    packageFilters:
+      dirExists: [lib, ios]
+      fileExists: "ios/Podfile"
+
+  pod:macos:
+    run: |
+      melos exec -- \
+        "cd macos && pod install"
+    description: Run pod install on macOS.
+    packageFilters:
+      dirExists: [lib, macos]
+      fileExists: "macos/Podfile"
+
+  build:android:prod:
+    run: |
+      melos exec -c 1 -- \
+        flutter build appbundle --dart-define-from-file=dart_defines/prod.env
+    description: Build the AppBundle for the production app.
+    packageFilters:
+      flutter: true
+      dirExists: [lib, android]
+
+  upload:ios:prod:
+    run: |
+      melos exec -c 1 -- \
+        flutter build ipa --dart-define-from-file=dart_defines/prod.env --export-options-plist="ios/prod/ExportOptions.plist"
+    description: Upload the IPA for the production app.
+    packageFilters:
+      flutter: true
+      dirExists: [lib, ios]

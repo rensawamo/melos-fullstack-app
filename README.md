@@ -15,7 +15,7 @@ my_project
 │   └── TodoApp
 │ 
 ├── backend
-│      ├── analytics
+│      ├── dartfrog(server)
 │      └── compose
 │      └── deploy
 │  

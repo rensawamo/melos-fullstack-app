@@ -1,1 +1,3 @@
-#  late
+bricks:
+  feature:
+    path: mason/feature

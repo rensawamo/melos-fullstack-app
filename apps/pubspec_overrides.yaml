@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: model,repository
-dependency_overrides:
-  model:
-    path: ../packages/core/model
-  repository:
-    path: ../packages/core/repository

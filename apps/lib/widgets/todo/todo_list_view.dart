@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:app/core/mutations/task/delete_task.dart';
-import 'package:app/core/mutations/task/get_all_tasks.dart';
-import 'package:app/core/mutations/task/update_task.dart';
+import 'package:app/core/mutations/todo/delete_todoes.dart';
+import 'package:app/core/mutations/todo/get_all_todoes.dart';
+import 'package:app/core/mutations/todo/update_todo.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../core/store/task_store.dart';
+import '../../core/store/todo_store.dart';
 
-class TaskListView extends StatelessWidget {
-  const TaskListView({super.key});
+class TodoListView extends StatelessWidget {
+  const TodoListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return VxBuilder(
-      mutations: const {GetAllTasksMutation},
+      mutations: const {GetAlltodosMutation},
       builder: (context, store, status) {
-        final tasks = (store as TaskStore).tasks;
+        final todos = (store as TodoStore).todoes;
         return Column(children: [
           Expanded(
             child: status == VxStatus.loading
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
                     shrinkWrap: true,
-                    itemCount: tasks.length,
+                    itemCount: todos.length,
                     itemBuilder: (context, index) {
-                      final task = tasks[index];
+                      final todo = todos[index];
                       return ListTile(
-                        title: Text(task.title)
+                        title: Text(todo.text)
                             .text
                             .white
                             .xl
@@ -36,23 +36,12 @@ class TaskListView extends StatelessWidget {
                             .rounded
                             .color(context.theme.primaryColor)
                             .make(),
-                        subtitle: task.isCompleted
-                            ? const Text("Completed").px8()
-                            : const Text("Not Completed").px8(),
+                
                         trailing: ButtonBar(
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  UpdateTaskMutation(task.copyWith(
-                                      isCompleted: !task.isCompleted));
-                                },
-                                icon: const Icon(
-                                  Icons.done,
-                                  color: Colors.green,
-                                )),
-                            IconButton(
-                                onPressed: () {
-                                  DeleteTaskMutation(task.id);
+                                  DeletetodoMutation(todo.id);
                                 },
                                 icon: const Icon(
                                   Icons.delete,

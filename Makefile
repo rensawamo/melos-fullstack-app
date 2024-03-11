@@ -11,6 +11,9 @@ bootstrap:
 bs: 
 	@$(MAKE) bootstrap
 
+
+#  local host web を想定
+.PHONY: front-start
 front-start:
 	cd apps/lib && flutter run -d chrome --web-browser-flag "--disable-web-security"
 

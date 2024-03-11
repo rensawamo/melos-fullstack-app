@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: shared
+# melos_managed_dependency_overrides: model,repository
 dependency_overrides:
-  shared:
-    path: ../packages/shared
+  model:
+    path: ../packages/core/model
+  repository:
+    path: ../packages/core/repository

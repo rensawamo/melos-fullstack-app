@@ -1,4 +1,5 @@
-import 'package:shared/shared.dart';
+import 'package:model/model.dart';
+import 'package:repository/repository.dart';
 
 /// A class that implements [TaskRepo] using an in-memory list.
 class InMemoryTaskRepo implements TaskRepo {

@@ -1,4 +1,5 @@
 
+// model
 class Task {
   final String id;
   final String title;
@@ -13,6 +14,7 @@ class Task {
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
+
 
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(

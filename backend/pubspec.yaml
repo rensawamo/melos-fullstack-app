@@ -8,8 +8,10 @@ environment:
 
 dependencies:
   dart_frog: ^1.0.0
-  shared: 1.0.0
-
+  model: 
+    path: ../packages/core/model
+  repository: 
+    path: ../packages/core/repository
 
 dev_dependencies:
   mocktail: ^0.3.0

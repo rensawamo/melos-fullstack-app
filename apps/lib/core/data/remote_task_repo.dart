@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:shared/shared.dart';
+import 'package:model/model.dart';
+import 'package:repository/repository.dart';
+
 
 
 
 class RemoteTaskRepo implements TaskRepo {
   final client = http.Client();
-  final baseUrl = 'http://10.0.2.2:8080';
+  final baseUrl = 'http://localhost:8080';
 
   @override
   Future<List<Task>> fetchAllTasks() async {

@@ -11,3 +11,6 @@ bootstrap:
 bs: 
 	@$(MAKE) bootstrap
 
+front-start:
+	cd apps/lib && flutter run -d chrome --web-browser-flag "--disable-web-security"
+

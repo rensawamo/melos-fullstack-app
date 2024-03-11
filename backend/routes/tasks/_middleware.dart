@@ -1,6 +1,6 @@
 import 'package:backend/data/in_memory_task_repo.dart';
 import 'package:dart_frog/dart_frog.dart';
-import 'package:shared/shared.dart';
+import 'package:repository/repository.dart';
 
 InMemoryTaskRepo? _taskRepo;
 

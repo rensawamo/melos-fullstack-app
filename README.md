@@ -12,3 +12,8 @@ melos の環境構築と dart frogのサーバのセットアップ
 ```sh
 $ make bs
 ```
+
+### frontend start 
+```sh
+$ make front-start 
+```

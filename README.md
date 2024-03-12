@@ -59,3 +59,61 @@ $ dart create -t package FOLDERNAME
 ```
 
 
+# Deploy Azure
+### サブスクの設定
+```sh
+$ az account list
+$ az account set -s YOURID
+```
+
+### リソースグループの追加と aca login
+```sh
+$ az acr create     --resource-group <RG GroupyName>   --name <ACR resistryName>     --sku basic     --admin-enabled true
+$ az acr login --name <ACR Name>
+```
+
+### ログインサーバの取得
+```sh
+$ az acr list --resource-group container-sample <ACR resistryName> --query "[]
+.{acrLoginServer:loginServer}" --output table
+
+AcrLoginServer
+-------------------------
+resistrysample.azurecr.io
+```
+
+### Docker file をbuild
+```sh
+$ docker build -t <CREATE DOCKER IMAGENAME>:latest .
+```
+
+### ACRのリポジトリに　Docker Imageをpush
+```sh
+$ docker push resistrysample.azurecr.io/aa<CREATED DOCKER IMAGENAME>a:latest
+```
+
+
+### ACI にデプロイ
+```sh
+$ az container create --resource-group myResourceGroup --name aci-tutorial-app --image <acrLoginServer>/aci-tutorial-app:v1 --cpu 1 --memory 1 --registry-login-server <acrLoginServer> --registry-username <service-principal-ID> --registry-password <service-principal-password> --ip-address Public --dns-name-label <aciDnsLabel> --ports 80
+```
+
+### デプロイの進行の確認
+```sh
+$ az container show --resource-group myResourceGroup --name aci-tutorial-app --query instanceView.state
+```
+
+### アプリとコンテナのログを確認
+```sh
+$ az container show --resource-group myResourceGroup --name aci-tutorial-app --query ipAddress.fqdn
+```
+
+
+### ACI の実行中のコンテナに接続
+```sh
+$ az container attach --name <APPNAME>  --resource-group <RGNAME>
+```
+
+
+
+

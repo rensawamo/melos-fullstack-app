@@ -6,8 +6,7 @@ COPY pubspec.* ./
 RUN dart pub get
 
 COPY . .
-
-
+WORKDIR /app/backend/
 RUN dart pub global activate dart_frog_cli
 RUN dart pub global run dart_frog_cli:dart_frog build
 
@@ -16,7 +15,7 @@ RUN dart compile exe build/bin/server.dart -o build/bin/server
 
 FROM scratch
 COPY --from=build /runtime/ /
-COPY --from=build /app/build/bin/server /app/bin/
+COPY --from=build /app/backend/build/bin/server /app/bin/backend/server
 
 # Start the server.
-CMD ["/app/bin/server"]
+CMD ["/app/bin/backend/server"]

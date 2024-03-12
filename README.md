@@ -15,9 +15,9 @@ my_project
 │   └── TodoApp
 │ 
 ├── backend
-│      ├── dartfrog(server)
-│      └── compose
-│      └── deploy
+│   ├── dartfrog(server)
+│   └── compose
+│   └── deploy
 │  
 ├── packages
 │   ├──  core
@@ -57,8 +57,5 @@ $ make front-start
 ```sh
 $ dart create -t package FOLDERNAME
 ```
-
-
-
 
 

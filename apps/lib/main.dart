@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     GetAllTasksMutation();
     return VxApp(
-        // store: TaskStore(),
-        store: TodoStore(),
+        store: TaskStore(),
+        // store: TodoStore(),
 
         builder: (context, appData) {
           return MaterialApp(

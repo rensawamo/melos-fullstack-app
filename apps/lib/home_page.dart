@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
             showSingleIcon: true,
           ),
           IconButton(
-            // onPressed: () => GetAllTasksMutation(),
-            onPressed: () => GetAlltodosMutation(),
+            onPressed: () => GetAllTasksMutation(),
+            // onPressed: () => GetAlltodosMutation(),
             icon: const Icon(Icons.refresh),
           )
         ],
@@ -32,13 +32,13 @@ class HomePage extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
 
           // YOU CAN CHANGE APP ALSO CAN CREATE DIFFERNTCE DIRECTORY
-          // child: TaskListView(),
-          child: TodoListView(),
+          child: TaskListView(),
+          // child: TodoListView(),
 
         ),
       ),
      
-      // bottomNavigationBar: const AddTaskWidget(),
+      bottomNavigationBar: const AddTaskWidget(),
     );
   }
 }

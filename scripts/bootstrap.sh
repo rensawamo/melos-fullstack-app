@@ -72,11 +72,13 @@ fi
 
 
 ##############################################################################
-##  server set up
+##  server set up on docker
 ##############################################################################
 echo ""
-echo "🚀 Starting Dart Frog server..."
-cd backend && dart_frog dev
+echo "🚀 Starting Dart Frog server on Docker"
+# cd backend && dart_frog dev
+# Dockerに変更
+docker run -i -t -p 8080:8080 dart-frog-app
 
 
 ##############################################################################

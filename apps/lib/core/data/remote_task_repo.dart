@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:model/model.dart';
 import 'package:repository/repository.dart';
-
-
-
+import 'package:app/flavors.dart';
 
 class RemoteTaskRepo implements TaskRepo {
   final client = http.Client();
   // android emulater の時は localhostでなく　10.0.2.2
-  final baseUrl = 'http://localhost:8080';
+  final baseUrl = F.name == 'development' ? 'http://localhost:8080' :
+   env.AZURETASK;
 
   @override
   Future<List<Task>> fetchAllTasks() async {

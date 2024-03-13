@@ -1,6 +1,7 @@
 #  Dart FullStack App 
 
 
+
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
@@ -87,7 +88,8 @@ resistrysample.azurecr.io
 
 ### Docker file をbuild
 ```sh
-$ docker build -t <CREATE DOCKER IMAGENAME>:latest .
+// m1/m2 macからのbuildの場合 Docker build時　--platform必要
+$ docker build -t <CREATE DOCKER IMAGENAME>:latest --platform linux/amd64 .
 ```
 
 ### ACRのリポジトリに　Docker Imageをpush

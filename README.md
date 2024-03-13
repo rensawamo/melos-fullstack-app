@@ -31,7 +31,8 @@ root
 │          └── auth
 │
 ├── Dockerfile
-├── dockercompose.yaml  
+├── dockercompose.yaml
+├── meson.yaml   
 ├── melos.yaml  
 ├── pubspec.yaml 
 └── README.md

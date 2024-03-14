@@ -4,7 +4,6 @@ import 'app.dart';
 import '../flavors.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   debugPrint(F.name.toString());

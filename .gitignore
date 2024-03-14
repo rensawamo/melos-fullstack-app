@@ -265,3 +265,8 @@ Dependencies/
 **/fastlane/test_output
 
 iOSInjectionProject/
+
+# env
+**/.env.development
+**/.env.staging
+**/.env.production

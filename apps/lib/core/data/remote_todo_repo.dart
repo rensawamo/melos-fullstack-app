@@ -1,17 +1,13 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:model/model.dart';
 import 'package:repository/repository.dart';
-import 'package:app/flavors.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 class RemoteTodoRepo implements TodoRepo {
   final client = http.Client();
-  // android emulater の時は localhostでなく　10.0.2.2
-  final baseUrl = F.name == 'development' ? 'http://localhost:8080' :
-   env.AZURETASK;
+    final baseUrl = dotenv.env['API_SERVER'];
 
   @override
   Future<List<Todo>> fetchAllTodo() async {

@@ -5,8 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'core/mutations/task/get_all_tasks.dart';
 import 'widgets/task/add_task_widget.dart';
 import 'widgets/task/task_list_view.dart';
-import 'widgets/todo/add_todo_widget.dart';
-import 'widgets/todo/todo_list_view.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
